@@ -60,6 +60,8 @@ return 0;}
 class Solution {
 public:
     int getsum(int n) {
+        int s=n;
+        int t=0;
     while(s)                 
         {
             t=(s%10)*(s%10)+t;      
@@ -67,8 +69,7 @@ public:
         }
         return t;
     }
-        return sum;
-    }
+
     bool isHappy(int n) {
         unordered_set<int> set;
         while(1) {
@@ -91,9 +92,8 @@ public:
 class Solution {
 public:
     int getsum(int n) {
-        int sum = 0;
-        while(n > 0)
-        {
+        int s=n;
+        int t=0;
             while(s)                 
             {
                 t=(s%10)*(s%10)+t;      
@@ -101,8 +101,7 @@ public:
             }
             return t;
         }
-        return sum;
-    }
+
     
     bool isHappy(int n) {
         int slow = n, fast = n;
