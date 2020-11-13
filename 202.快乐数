@@ -13,5 +13,44 @@
     6^2+8^2=100
     1^2+0^2+0^2=1
   
- 题解：
- 
+ 题解1：
+ #include<vector>
+class Solution {
+public:
+    bool isHappy(int n) {
+        vector<int> v1;                 //解空间
+        int t=0;                        //求和变量
+        int s=n;                        //计算变量
+         while(s!=0)                    //求各项平方和
+            {
+                t=(s%10)*(s%10)+t;      
+                s=s/10;                 
+            }
+            if (t==1)                   //判定是否快乐数
+                return true;
+            v1.push_back(t);            //解空间添加元素
+            s=t;                        
+            t=0;
+       while(t!=1)
+        {
+            while(s!=0)
+            {
+                t=(s%10)*(s%10)+t;
+                s=s/10;
+            }
+            if (t==1)
+                return true;
+            else
+               {
+                    for(int i=0;i<v1.size();i++)
+                    {
+                        if (t==v1[i])
+                        return false;
+                    }
+                    v1.push_back(t);
+                    s=t;
+                    t=0;
+                }
+        }
+return 0;}
+};
