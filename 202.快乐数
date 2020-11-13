@@ -13,19 +13,23 @@
     6^2+8^2=100
     1^2+0^2+0^2=1
   
- 题解1：
+ 题解1：  
  #include<vector>
 class Solution {
+int getsum(n){
+    while(s)                 
+        {
+            t=(s%10)*(s%10)+t;      
+            s=s/10;                 
+        }
+        return t;
+}
 public:
     bool isHappy(int n) {
         vector<int> v1;                 //解空间
         int t=0;                        //求和变量
         int s=n;                        //计算变量
-         while(s!=0)                    //求各项平方和
-            {
-                t=(s%10)*(s%10)+t;      
-                s=s/10;                 
-            }
+         t=getsum(n)
             if (t==1)                   //判定是否快乐数
                 return true;
             v1.push_back(t);            //解空间添加元素
@@ -33,11 +37,7 @@ public:
             t=0;
        while(t!=1)
         {
-            while(s!=0)
-            {
-                t=(s%10)*(s%10)+t;
-                s=s/10;
-            }
+           t=getsum(n);
             if (t==1)
                 return true;
             else
@@ -53,4 +53,65 @@ public:
                 }
         }
 return 0;}
+};
+
+
+题解2：哈希表算法
+class Solution {
+public:
+    int getsum(int n) {
+    while(s)                 
+        {
+            t=(s%10)*(s%10)+t;      
+            s=s/10;                 
+        }
+        return t;
+    }
+        return sum;
+    }
+    bool isHappy(int n) {
+        unordered_set<int> set;
+        while(1) {
+            int sum = getSum(n);
+            if (sum == 1) {
+                return true;
+            }
+            // 如果这个sum曾经出现过，说明已经陷入了无限循环了，立刻return false
+            if (set.find(sum) != set.end()) {
+                return false;
+            } else {
+                set.insert(sum);
+            }
+            n = sum;
+        }
+    }
+};
+
+题解3：快慢指针算法
+class Solution {
+public:
+    int getsum(int n) {
+        int sum = 0;
+        while(n > 0)
+        {
+            while(s)                 
+            {
+                t=(s%10)*(s%10)+t;      
+                s=s/10;                 
+            }
+            return t;
+        }
+        return sum;
+    }
+    
+    bool isHappy(int n) {
+        int slow = n, fast = n;
+        do{
+            slow = getsum(slow);
+            fast = getsum(fast);
+            fast = getsum(fast);
+        }while(slow != fast);
+        
+        return slow == 1;
+    }
 };
